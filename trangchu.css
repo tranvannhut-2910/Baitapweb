@@ -1,0 +1,479 @@
+* {
+  box-sizing: border-box;
+}
+
+header {
+  position: relative;
+  background-image: url(images/header.jpg);
+  height: 150px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+
+
+ .logo {
+  height: 90px;
+  width: 70px;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+}
+@keyframes chuyendong {
+  from {
+      transform: translateX(200%);
+  }
+  to {
+      transform: translateX(0);
+  }
+}
+@media (max-width: 600px) {
+  .logo {
+   display: none;
+  }
+}
+
+.logo {
+
+  animation: chuyendong 4s;
+  animation-fill-mode:forwards;
+}
+
+
+nav {
+  display: flex;
+  gap: 10px; 
+  margin: 15px;
+}
+
+nav a {
+  padding: 7px;
+  text-decoration: none;
+  color: rgb(235, 231, 25);
+  font-size: 20x;
+  font-weight: 700;
+}
+
+nav a:hover {
+  color: #fff;
+}
+
+
+.timkiem {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  margin: 5px;
+  gap: 5px;
+  width: 0%;  
+}
+
+.timkiem input {
+border: 0.1px solid rgb(136, 136, 14);
+border-radius: 8px;
+font-size: 20px;
+
+}
+
+
+ #gif {
+  width: 4%;
+
+}
+
+
+.ani i {
+  color: red;
+}
+
+
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  min-width: 680px;
+}
+
+@media (max-width: 600px) {
+  body {
+      font-size: 14px;
+  }
+}
+
+
+/* "TRANG CHU"*/
+
+/* "TRANG CHU"chinnh hinh mau va hinh nguoi dung*/
+
+.mau, .nguoidung {         
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 15px;
+  padding: 20px;       
+  overflow-x: auto;
+}
+.mau img  {
+  width: 20%; 
+  border-radius: 15px;
+  transition: transform 0.2s;
+  padding: 5px;
+}
+
+
+ .nguoidung img {
+  width: 20%; 
+  height: auto;
+  border-radius: 15px;
+  border: 1px solid black;
+  transition: transform 0.2s;
+}
+.mau img:hover{
+  transform: scale(2);
+  border-radius: 10px;     
+}
+
+.mau::-webkit-scrollbar, .nguoidung ::-webkit-scrollbar {
+  height: 10px;
+}
+.mau::-webkit-scrollbar-thumb, .nguoidung ::-webkit-scrollbar-thumb {
+    background-color: rgba(76, 71, 71, 0.5); 
+    border-radius: 10px;
+  
+}
+
+
+.nutxt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+ 
+}
+
+.nutxt button {
+  border-radius: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.nutxt button:hover {
+ background-color: rgb(147, 71, 169);
+ box-shadow: 4px 4px 12px rgb(147, 71, 169);
+}
+
+
+
+
+
+
+.video {         
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 15px;
+  padding: 20px;    
+}
+.video  {
+  width: 50%; 
+  height: auto;
+  border-radius: 15px;
+  transition: transform 0.2s;
+}
+
+
+ video{
+  width: 100%; 
+  border-radius: 15px;
+}
+
+/* GIOI THIEU*/
+
+.center{
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+.cam{
+  width: 70%;
+  margin: 0 auto;
+}
+section h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+section p {
+  margin-bottom: 20px;
+}
+
+.history, .team, .vision, .achievements {
+  margin-bottom: 30px; 
+}
+
+
+.history img, .team img, .vision img, .achievements img {
+  width: 40%;
+  max-width: auto;
+  
+  display: block;
+  border-radius: 15px;
+  margin: 0 auto;
+}
+
+
+/* "SAN PHAM"*/
+
+.sp {
+  border: 1px solid black;
+  border-radius: 5%;
+  padding: 10px;
+  text-align: center;
+  width: 90%;
+ margin: 10px;
+}
+
+.sp img:hover {
+  transform: scale(1.7);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.sp img {
+  width: 80%;
+}
+.sp input {
+  margin: 6px;
+  border-radius: 5px;
+}
+.container input {
+text-align: center;
+}
+
+
+.cls button {
+border: 1px solid black;
+border-radius: 5%;
+height: 40px;
+width: 40px;
+
+}
+.cls {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+padding: 15px;
+}
+
+#n0 button{
+background-color: rgb(182, 221, 159);
+}
+
+
+/*bố cục chung*/
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  }
+  
+  @media (max-width: 768px) {
+  .container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  }
+  
+  @media (max-width: 600px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  }
+
+.container1 { 
+  display: flex;
+  grid-template-areas:
+    "top"
+    "left"
+    "center"
+    "right"
+    "bottom";
+    item-right{display: block;}
+}
+
+
+@media (min-width: 600px) {
+  .container1 {
+    grid-template-areas:
+    "top top top"
+    "left center center"
+    "bottom bottom bottom";}
+    item-right {display: none;}
+  }
+
+
+  @media (min-width: 768px) {
+    .container1 {
+      grid-template-areas:
+      "top top top"
+      "left center center"
+      "bottom bottom bottom";}
+      item-right {display: none;}
+    }
+    
+
+
+/* GIO HANG*/
+body, h2, table, button  {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  line-height: 1.0;
+  background-color: white;
+}
+
+main {
+  padding: 20px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 40px;
+  color: red;
+}
+
+table{
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+th, td {
+  border: 1px solid black;
+  text-align: center;
+  height: 30px; 
+  padding: 5px; 
+}
+#cart-items {
+  font-size: 20px;
+}
+
+#total-price {
+  margin: 10px 10px;
+  border-top: 1px solid white; 
+  padding: 10px;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background: white;
+  color: black;
+  font-size: 25px;
+}
+
+button {
+  background: green;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 10px; 
+  display: inline-block; 
+}
+
+button:hover {
+  background: violet; 
+}
+
+#hsp {
+  width: 300px;
+}
+
+img {
+  width: 100%;
+}
+
+.form{
+  width: 300px;               
+  margin: 0 auto;             
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;    
+}
+
+.form-group{
+  width: 100%;
+  text-align: center;
+}
+
+
+
+
+
+footer {
+  background-color: #bca6a6;
+  font-size: 20px;
+  line-height: 4px;
+  height: 150px; 
+  padding: 10px;
+  text-align: center;
+}
+
+/*liem he*/
+
+.cangiua{
+  text-align: center;
+  margin: auto;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  margin: 20px auto;
+}
+
+form label {
+  margin-top: 20px auto;
+  text-align: left;
+}
+
+form input, form textarea {
+  padding: 8px;
+  margin-top: 20px auto;
+  border: 1px solid #111111;
+  border-radius: 5px;
+  width: 80%;
+  align-items: center;
+}
+
+form button {
+ 
+  padding: 10px;
+  background-color: #3d3c3c;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 50%;
+  margin: 20px auto;
+}
+
+form button:hover {
+  background-color: #5a4e4e;
+}

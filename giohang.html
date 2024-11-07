@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng</title>
+    <link rel="stylesheet" href="trangchu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+   
+    
+    <script>     
+//hàm reload khi tab 
+        document.addEventListener('visibilitychange', () => {
+            if (document.visibilityState === 'visible') {
+                location.reload();
+            }
+        });
+
+        function getCart() {
+            const cart = localStorage.getItem('cart');
+            return cart ? JSON.parse(cart) : [];
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function displayCart() {
+            const cart = getCart();
+            const cartTable = document.getElementById('cart-items');
+            const totalPriceElement = document.getElementById('total-price');
+            
+            cartTable.innerHTML = ''; 
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><img src="${item.image}" alt="${item.name}" width="50"></td>
+                    <td>${item.name}</td>
+                    <td>${item.quantity}</td>
+                    <td>${item.size}</td> 
+                    <td>${item.price} VND</td>
+                    <td>${item.quantity * item.price} VND</td>
+                    <td><button onclick="removeItem(${index})">Xóa</button></td>
+                `;
+                cartTable.appendChild(row);
+                total += item.quantity * item.price;
+            });
+            totalPriceElement.innerText = `Tổng Tiền: ${total} VND`;
+        }
+        function thanhtoan() {
+            const cart = getCart();
+            if (cart.length === 0) {
+                alert('Giỏ hàng của bạn đang trống!');
+                return;
+            }
+            const total = cart.reduce((sum, item) => sum + item.quantity * item.price, 0);
+            alert(`Bạn đã đặt hàng thành công với số tiền là: ${total.toLocaleString()} VND`);
+            clearCart();
+        }
+
+        function removeItem(index) {
+            const cart = getCart();
+            cart.splice(index, 1); 
+            saveCart(cart);
+            displayCart(); 
+        }
+
+        function clearCart() {
+            localStorage.removeItem('cart');
+            displayCart();
+        }
+
+        document.addEventListener('DOMContentLoaded', displayCart);
+    </script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="trangchu.html"><img src="images/ADIDAS.png" alt="Example Image">
+        </div>
+        <nav>
+            <a href="trangchu.html">Trang Chủ</a>
+            <a href="gioithieu.html">Giới Thiệu</a>
+            <a href="sanpham.html">Sản Phẩm</a>
+            <a href="giohang.html">Giỏ Hàng</a>
+            <a href="dangky.html">Đăng Ký</a>
+            <a href="dangnhap.html">Đăng Nhập</a>
+            <a href="lienhe.html">Liên Hệ</a>
+        </nav>
+        <div class="timkiem">
+                <input type="text" placeholder="  tìm kiếm">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <div class="ani">
+                    <a href="giohang.html"><i class="fa-solid fa-cart-shopping"></i></a>
+                    </div>
+            </div>
+    </header>
+
+    <main>
+        <h2>Giỏ Hàng Của Bạn</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th id="hsp">Hình SP</th>
+                    <th>Tên SP</th>
+                    <th>Số Lượng SP</th>
+                    <th>Size SP</th>
+                    <th>Giá SP</th>
+                    <th>Tiền SP</th>
+                    <th>Xóa SP</th>
+                </tr>
+                <tbody  id="cart-items"></tbody>    
+                <tbody  id="total-price"></tbody>
+            </thead>
+       </table>
+        <button onclick="thanhtoan()">Thanh Toán</button>
+        <button onclick="clearCart()">Xóa Toàn Bộ Giỏ Hàng</button>
+  
+    </main>
+
+
+    <footer>
+        <div class="footer-colum">
+            <p>Liên hệ với chúng tôi</p>
+            <p>Địa chỉ: 123 Đường ABC, Quận XYZ, Thành phố HCM</p>
+        </div>
+        <div class="footer-colim">
+        <p>Hotline: 0909 123 456</p>
+        <p>Email: contact@shopgiaynike.vn</p>
+        <p>Facebook: facebook.com/shopgiaynike.vn</p>
+    </footer>   
+
+</body>
+</html>

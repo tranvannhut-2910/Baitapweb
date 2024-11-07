@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sản Phẩm</title>
+    <link rel="stylesheet" href="trangchu.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="shotcut icon" href="images/icon.png">
+    <script>
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];  
+
+        function saveCart() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        function addToCart(product, inputId, sizeId) {
+    const quantityInput = document.getElementById(inputId);
+    const quantity = parseInt(quantityInput.value) || 1;
+    const sizeInput = document.getElementById(sizeId);
+    const size = parseInt(sizeInput.value) || 39;
+
+    if (size < 39 || size > 42) {0
+        alert("Vui lòng nhập lại chính xác size giày");
+        return;
+    }
+
+    if (quantity < 1 || quantity > 100) {
+        alert("Vui lòng nhập số lượng từ 1 đến 100.");
+        return;
+    }
+
+    const existingItemIndex = cart.findIndex(item => item.id === product.id && item.size === size);
+
+    if (existingItemIndex !== -1) {
+        cart[existingItemIndex].quantity += quantity;
+    } else {
+        cart.push({ ...product, quantity, size });
+    }
+
+    const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+    if (totalQuantity > 100) {
+        alert("Tổng số lượng sản phẩm trong giỏ hàng không được vượt quá 100.");
+        if (existingItemIndex !== -1) {
+            cart[existingItemIndex].quantity -= quantity;
+        } else {
+            cart.pop();
+        }
+    } else {
+        alert(`Bạn đã thêm ${quantity} sản phẩm. Tổng trong giỏ hàng: ${totalQuantity}.`);
+    }
+
+    quantityInput.value = 1; 
+    saveCart();
+    console.log(cart);
+}
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="trangchu.html"><img src="images/ADIDAS.png" alt="Example Image">
+        </div>
+        <nav>
+            <a href="trangchu.html">Trang Chủ</a>
+            <a href="gioithieu.html">Giới Thiệu</a>
+            <a href="sanpham.html">Sản Phẩm</a>
+            <a href="giohang.html" target="_blank">Giỏ Hàng</a>
+            <a href="dangky.html">Đăng Ký</a>
+            <a href="dangnhap.html">Đăng Nhập</a>
+            <a href="lienhe.html">Liên Hệ</a>
+        </nav>
+        <div class="timkiem">
+            
+            <input type="text" placeholder="Tìm kiếm">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <a href="giohang.html"><i class="fa-solid fa-cart-shopping"></i></a>
+        </div>
+    </header>
+
+   
+    <main>
+        <h1>Sản Phẩm</h1>
+        <div class="container">
+            <div class="sp" id="sp17">
+                <img src="images/sp17.jpg" alt="sản phẩm 1">
+                <p>giày 17</p>
+                <p>299.000VNĐ</p>
+                Size: <input type="number" id="sp17-size" min="39" max="42" placeholder="39-42"><br>
+                <input type="number" id="sp17-input" min="1" max="100"  placeholder="1-100">
+                <button onclick="addToCart({name: 'Sản phẩm A17', id: 17,  price: 100000, image: 'images/sp17.jpg'}, 'sp17-input', 'sp17-size')">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="sp" id="sp18">
+                <img src="images/sp18.jpg" alt="sản phẩm 18">
+                <p>giày 18</p>
+                <p>499.000VNĐ</p>
+                Size: <input type="number" id="sp18-size" min="39" max="42" placeholder="39-42"><br>
+                <input type="number" id="sp18-input" min="1" max="100"  placeholder="1-100">
+                <button onclick="addToCart({name: 'Sản phẩm A18', id: 18,  price: 100000, image: 'images/sp18.jpg'}, 'sp18-input', 'sp2-size')">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="sp" id="sp19" >
+                <img src="images/sp19.jpg" alt="sản phẩm 19">
+                <p>giày 19</p>
+                <p>399.000VNĐ</p>
+                Size: <input type="number" id="sp19-size" min="39" max="42" placeholder="39-42"><br>
+                <input type="number" id="sp19-input" min="1" max="100"  placeholder="1-100">
+                <button onclick="addToCart({name: 'Sản phẩm A19', id: 19, price: 100000, image: 'images/sp19.jpg'}, 'sp19-input', 'sp3-size')">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="sp" id="sp20" >
+                <img src="images/sp20.jpg" alt="sản phẩm 20">
+                <p>giày 20</p>
+                <p>500.000VNĐ</p>
+                Size: <input type="number" id="sp20-size" min="39" max="42" placeholder="39-42"><br>
+                <input type="number" id="sp20-input" min="1" max="100"  placeholder="1-100">
+                <button onclick="addToCart({name: 'Sản phẩm A20', id: 20, price: 100000, image: 'images/sp20.jpg'}, 'sp20-input', 'sp4-size')">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="sp" id="sp21" >
+                <img src="images/sp21.jpg" alt="sản phẩm 21">
+                <p>giày 21</p>
+                <p>549.000VNĐ</p>
+                Size: <input type="number" id="sp21-size" min="39" max="42" placeholder="39-42"><br>
+                <input type="number" id="sp21-input" min="1" max="100"  placeholder="1-100">
+                <button onclick="addToCart({name: 'Sản phẩm A21', id: 21, price: 100000, image: 'images/sp21.jpg'}, 'sp21-input', 'sp5-size')">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="sp" id="sp22" >
+                <img src="images/sp22.jpg" alt="sản phẩm 22">
+                <p>giày 22</p>
+                3 <p>500.000VNĐ</p>
+                Size: <input type="number" id="sp22-size" min="39" max="42" placeholder="39-42"><br>
+                <input type="number" id="sp22-input" min="1" max="100"  placeholder="1-100">
+                <button onclick="addToCart({name: 'Sản phẩm A22', id: 22, price: 100000, image: 'images/sp22.jpg'}, 'sp22-input', 'sp6-size')">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="sp" id="sp23" >
+                <img src="images/sp23.jpg" alt="sản phẩm 23">
+                <p>giày 23</p>
+                <p>500.000VNĐ</p>
+                Size: <input type="number" id="sp23-size" min="39" max="42" placeholder="39-42"><br>
+                <input type="number" id="sp23-input" min="1" max="100"  placeholder="1-100">
+                <button onclick="addToCart({name: 'Sản phẩm A23', id: 23, price: 100000, image: 'images/sp23.jpg'}, 'sp23-input', 'sp7-size')">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="sp" id="sp24" >
+                <img src="images/sp24.jpg" alt="sản phẩm 24">
+                <p>giày 24</p>
+                <p>500.000VNĐ</p>
+                Size: <input type="number" id="sp24-size" min="39" max="42" placeholder="39-42"><br>
+                <input type="number" id="sp24-input" min="1" max="100"  placeholder="1-100">
+                <button onclick="addToCart({name: 'Sản phẩm A24', id: 24, price: 100000, image: 'images/sp24.jpg'}, 'sp24-input', 'sp8-size')">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="sp" id="sp25" >
+                <img src="images/sp25.jpg" alt="sản phẩm 25">
+                <p>giày 25</p>
+                <p>500.000VNĐ</p>
+                Size: <input type="number" id="sp25-size" min="39" max="42" placeholder="39-42"><br>
+                <input type="number" id="sp25-input" min="1" max="100"  placeholder="1-100">
+                <button onclick="addToCart({name: 'Sản phẩm A25', id: 25, price: 100000, image: 'images/sp25.jpg'}, 'sp25-input', 'sp9-size')">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="sp" id="sp26" >
+                <img src="images/sp26.jpg" alt="sản phẩm 26">
+                <p>giày 26</p>
+                <p>600.000VNĐ</p>
+                Size: <input type="number" id="sp26-size" min="39" max="42" placeholder="39-42"><br>
+                <input type="number" id="sp26-input" min="1" max="100"  placeholder="1-100">
+                <button onclick="addToCart({name: 'Sản phẩm A26', id: 26, price: 100000, image: 'images/sp26.jpg'}, 'sp26-input', 'sp10-size')">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="sp" id="sp27" >
+                <img src="images/sp2.jpg" alt="sản phẩm 27">
+                <p>giày 27</p>
+                <p>599.000VNĐ</p>
+                Size: <input type="number" id="sp27-size" min="39" max="42" placeholder="39-42"><br>
+                <input type="number" id="sp27-input" min="1" max="100" placeholder="1-100">
+                <button onclick="addToCart({name: 'Sản phẩm A27', id: 27, price: 100000, image: 'images/sp27.jpg'}, 'sp27-input', 'sp11-size')">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="sp" id="sp28" >
+                <img src="images/sp28.jpg" alt="sản phẩm 28">
+                <p>giày 28</p>
+                <p>489.000VNĐ</p>
+                Size: <input type="number" id="sp28-size" min="39" max="42" placeholder="39-42"><br>
+                <input type="number" id="sp28-input" min="1"  max="100" placeholder="1-100">
+                <button   onclick="addToCart({name: 'Sản phẩm A28', id: 28, price: 100000, image: 'images/sp28.jpg'}, 'sp28-input', 'sp12-size')" >Thêm vào giỏ hàng</button>
+            </div>
+            <div class="sp" id="sp29" >
+                <img src="images/sp29.jpg" alt="sản phẩm 29">
+                <p>giày 29</p>
+                <p>500.000VNĐ</p>
+                Size: <input type="number" id="sp29-size" min="39" max="42" placeholder="39-42"><br>
+                <input type="number" id="sp29-input" min="1" max="100"  placeholder="1-100">
+                <button onclick="addToCart({name: 'Sản phẩm A29', id: 29, price: 100000, image: 'images/sp29.jpg'}, 'sp29-input', 'sp13-size')" >Thêm vào giỏ hàng</button>
+            </div>
+            <div class="sp" id="sp30" >
+                <img src="images/sp30.jpg" alt="sản phẩm 30">
+                <p>giày 30</p>
+                <p>579.000VNĐ</p>
+                Size: <input type="number" id="sp30-size" min="39" max="42" placeholder="39-42"><br>
+                <input type="number" id="sp14-input" min="1" max="100"  placeholder="1-100">
+                <button onclick="addToCart({name: 'Sản phẩm A30', id: 30, price: 100000, image: 'images/sp30.jpg'}, 'sp30-input', 'sp14-size')">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="sp" id="sp31" >
+                <img src="images/sp31.jpg" alt="sản phẩm 31">
+                <p>giày 31</p>
+                 <p>599.000VNĐ</p>
+                 Size: <input type="number" id="sp31-size" min="39" max="42" placeholder="39-42"><br>
+                <input type="number" id="sp31-input" min="1" max="100"  placeholder="1-100">
+                <button onclick="addToCart({name: 'Sản phẩm A31', id: 31, price: 100000, image: 'images/sp31.jpg'}, 'sp31-input', 'sp15-size')">Thêm vào giỏ hàng</button>
+            </div>
+            <div class="sp" id="sp32" >
+                <img src="images/sp32.jpg" alt="sản phẩm 32">
+                <p>giày 32</p>
+                <p>569.000VNĐ</p>
+                Size: <input type="number" id="sp32-size" min="39" max="42" placeholder="39-42"><br>
+                <input type="number" id="sp32-input" min="1" max="100"  placeholder="1-100">
+                <button onclick="addToCart({name: 'Sản phẩm A32', id: 32, price: 100000, image: 'images/sp32.jpg'}, 'sp32-input', 'sp16-size')">Thêm vào giỏ hàng</button>
+            </div>
+        </div>
+
+        </div>
+        <div class="cls">
+            
+            <a href="sanpham.html"><button>&lt;</button></a>
+            <a href="sanpham.html"><button>0</button></a>  
+            <a href="sanpham1.html" id="n0"><button>1</button></a> 
+            <a href="sanpham2.html"><button>2</button></a>
+            <a href="sanpham3.html"><button>3</button></a>
+            <a href="sanpham3.html"><button>&gt;</button></a>
+            <br>
+            <br>
+           </div>
+    </main>
+    <footer>
+        <div class="footer-colum">
+            <p>Liên hệ với chúng tôi</p>
+            <p>Địa chỉ: 123 Đường ABC, Quận XYZ, Thành phố HCM</p>
+        </div>
+        <div class="footer-colim">
+        <p>Hotline: 0909 123 456</p>
+        <p>Email: contact@shopgiaynike.vn</p>
+        <p>Facebook: facebook.com/shopgiaynike.vn</p>
+    </footer>
+</body>
+</html>
